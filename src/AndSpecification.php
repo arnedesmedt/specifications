@@ -10,7 +10,7 @@ use Throwable;
 final class AndSpecification extends Specification
 {
     /** @var array<Specification> */
-    private array $specifications;
+    private readonly array $specifications;
 
     public function __construct(Specification ...$specifications)
     {

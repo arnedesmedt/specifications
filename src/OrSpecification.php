@@ -12,10 +12,12 @@ use function array_map;
 use function json_encode;
 use function sprintf;
 
+use const JSON_THROW_ON_ERROR;
+
 final class OrSpecification extends Specification
 {
     /** @var array<Specification> */
-    private array $specifications;
+    private readonly array $specifications;
 
     public function __construct(Specification ...$specifications)
     {
@@ -46,7 +48,8 @@ final class OrSpecification extends Specification
                             array_map(
                                 static fn (Throwable $exception) => $exception->getMessage(),
                                 $exceptions
-                            )
+                            ),
+                            JSON_THROW_ON_ERROR
                         )
                     )
                 )

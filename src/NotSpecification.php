@@ -9,7 +9,7 @@ use Throwable;
 
 final class NotSpecification extends Specification
 {
-    public function __construct(private Specification $specification)
+    public function __construct(private readonly Specification $specification)
     {
     }
 
