@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ADS\Specifications;
 
 use Exception;
-use LogicException;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Throwable;
 
 use function array_map;
@@ -41,7 +41,7 @@ final class OrSpecification extends Specification
 
         if (empty($this->notSatisfiedException)) {
             $this->setNotSatisfiedException(
-                new LogicException(
+                new UnprocessableEntityHttpException(
                     sprintf(
                         'One of the following exceptions needs to be solved: %s',
                         json_encode(
