@@ -9,7 +9,9 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Throwable;
 
 use function array_map;
+use function count;
 use function json_encode;
+use function reset;
 use function sprintf;
 
 use const JSON_THROW_ON_ERROR;
@@ -40,6 +42,13 @@ final class OrSpecification extends Specification
         }
 
         if (empty($this->notSatisfiedException)) {
+            if (count($exceptions) === 1) {
+                $exception = reset($exceptions);
+                $this->setNotSatisfiedException($exception);
+
+                return false;
+            }
+
             $this->setNotSatisfiedException(
                 new UnprocessableEntityHttpException(
                     sprintf(
