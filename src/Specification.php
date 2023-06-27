@@ -13,10 +13,10 @@ abstract class Specification
 
     abstract public function isSatisfiedBy(mixed $value): bool;
 
-    public function checkSatisfied(mixed $value): void
+    public function checkSatisfied(mixed $value): static
     {
         if ($this->isSatisfiedBy($value)) {
-            return;
+            return $this;
         }
 
         throw $this->notSatisfiedException ?? $this->notSatisfiedException($value);
