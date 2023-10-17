@@ -6,13 +6,16 @@ namespace ADS\Specifications;
 
 use Throwable;
 
+/** @template T */
 abstract class Specification
 {
     protected ?Throwable $notSatisfiedException = null;
     protected ?Throwable $oppositeNotSatisfiedException = null;
 
+    /** @param T $value */
     abstract public function isSatisfiedBy(mixed $value): bool;
 
+    /** @param T $value */
     public function checkSatisfied(mixed $value): static
     {
         if ($this->isSatisfiedBy($value)) {
@@ -29,8 +32,10 @@ abstract class Specification
         return $this;
     }
 
+    /** @param T $value */
     abstract public function notSatisfiedException(mixed $value): Throwable;
 
+    /** @param T $value */
     public function oppositeNotSatisfiedException(mixed $value): ?Throwable
     {
         return null;
