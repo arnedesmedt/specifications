@@ -9,8 +9,8 @@ use Throwable;
 /** @template T */
 abstract class Specification
 {
-    protected ?Throwable $notSatisfiedException = null;
-    protected ?Throwable $oppositeNotSatisfiedException = null;
+    protected Throwable|null $notSatisfiedException = null;
+    protected Throwable|null $oppositeNotSatisfiedException = null;
 
     /** @param T $value */
     abstract public function isSatisfiedBy(mixed $value): bool;
@@ -36,7 +36,7 @@ abstract class Specification
     abstract public function notSatisfiedException(mixed $value): Throwable;
 
     /** @param T $value */
-    public function oppositeNotSatisfiedException(mixed $value): ?Throwable
+    public function oppositeNotSatisfiedException(mixed $value): Throwable|null
     {
         return null;
     }

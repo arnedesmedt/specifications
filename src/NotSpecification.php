@@ -7,8 +7,13 @@ namespace ADS\Specifications;
 use Exception;
 use Throwable;
 
+/**
+ * @template T
+ * @extends Specification<T>
+ */
 final class NotSpecification extends Specification
 {
+    /** @param Specification<T> $specification */
     public function __construct(private readonly Specification $specification)
     {
     }
