@@ -17,6 +17,7 @@
     },
     "require-dev": {
         "doctrine/coding-standard": "~11.0",
+        "icanhazstring/composer-unused": "^0.8.11",
         "phpmd/phpmd": "~2.0",
         "phpro/grumphp": "~2.0",
         "phpstan/phpstan": "~1.0",
@@ -40,13 +41,15 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "phpro/grumphp": true
-        }
+        },
+        "sort-packages": true
     },
     "scripts-descriptions": {
         "tests": "Run all tests"
     },
     "scripts": {
         "tests": [
+            "vendor/bin/composer-unused",
             "vendor/bin/phpcs",
             "vendor/bin/phpstan analyze --no-progress",
             "vendor/bin/phpmd src text phpmd.xml",
